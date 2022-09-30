@@ -9,7 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,6 +64,7 @@ public class SunFragment extends Fragment {
     }
 
     ImageView imageView;
+    Button newImageButton;
 
 
     @Override
@@ -71,6 +74,7 @@ public class SunFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        Toast.makeText(getContext(), "Chargement en cours", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -83,7 +87,19 @@ public class SunFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         //MY CODE
+        getRandomImage();
+        newImageButton = getActivity().findViewById(R.id.button);
 
+        newImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getRandomImage();
+                Toast.makeText(getContext(), "Chargement en cours", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void getRandomImage() {
         JsonObjectRequest request = new JsonObjectRequest(
                 "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=43AwjPLrqjesmqA7DT2ctZ48KE4XTIIaTt5UO5ky",
                 resultat -> {
@@ -106,6 +122,5 @@ public class SunFragment extends Fragment {
         );
 
         RequestManager.getInstance(getContext()).addToRequestQueue(request);
-
     }
 }
