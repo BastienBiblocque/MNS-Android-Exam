@@ -75,6 +75,6 @@ public class ImageFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         imageView = getActivity().findViewById(R.id.imageView3);
 
-        Glide.with(this).load("https://apod.nasa.gov/apod/image/2209/SunriseATWImageCollageFinal1067.jpg").into(imageView);
+        Glide.with(this).load("https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw2110a_0.jpg").into(imageView);
     }
 }
