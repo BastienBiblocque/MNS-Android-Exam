@@ -73,8 +73,6 @@ public class ImageFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        Log.d("test","test");
-
         imageView = getActivity().findViewById(R.id.imageView3);
 
         Glide.with(this).load("https://apod.nasa.gov/apod/image/2209/SunriseATWImageCollageFinal1067.jpg").into(imageView);

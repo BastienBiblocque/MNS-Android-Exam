@@ -4,9 +4,14 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import org.json.JSONException;
+
+import com.android.volley.toolbox.JsonObjectRequest;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,6 +58,20 @@ public class SunFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        //MY CODE
+
+        JsonObjectRequest request = new JsonObjectRequest(
+                "https://dummyjson.com/products",
+                resultat -> {
+                    Log.d("test", String.valueOf(resultat));
+                },
+                error -> error.printStackTrace()
+        );
+
+        RequestManager.getInstance(getContext()).addToRequestQueue(request);
+        //END MY CODE
+
     }
 
     @Override
